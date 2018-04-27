@@ -11,7 +11,8 @@ import (
 func Route(
 	r *mux.Router,
 	user controllers.UserController,
-	auth controllers.AuthController) {
+	auth controllers.AuthController,
+	scraper controllers.ScraperController) {
 
 	r.HandleFunc("/health",
 		GetHealth,
@@ -32,6 +33,9 @@ func Route(
 		auth.GetRefreshToken).Methods(http.MethodGet)
 	r.HandleFunc("/users/{username}/token",
 		auth.Wrapper(controllers.RefreshTokenType, auth.GetAuthToken)).Methods(http.MethodGet)
+
+	r.HandleFunc("/scraper/website",
+		scraper.GetWebsite).Methods(http.MethodGet)
 }
 
 func GetHealth(w http.ResponseWriter, r *http.Request) {
