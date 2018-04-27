@@ -28,7 +28,7 @@ func (d *sqlDb) CreateUser(user *models.User) error {
 
 func (d *sqlDb) GetUser(username string) (*models.User, error) {
 	rows, err := d.db.Query(`
-        SELECT Users.username, Users.password, Users.email, Users.invalidatedtokens
+        SELECT Users.username, Users.password, Users.email, Users.invalidatedtokens FROM Users
 		WHERE Users.username = ?
     `, username)
 	if err != nil {

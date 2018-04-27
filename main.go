@@ -14,6 +14,8 @@ import (
 )
 
 func main() {
+	log.SetFlags(log.LstdFlags | log.Lshortfile)
+
 	getConfig()
 
 	databaseType := viper.GetString("database.type")
